@@ -1,0 +1,15 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h4 class="modal-title col-4 offset-4">Carregando&hellip;</h4>
+    <button type="button" class="close col-1 offset-3" aria-label="Close" (click)="d()">
+      <span class="ml-4" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body text-center">
+    <i class="text-info fa fa-circle-o-notch fa-spin fa-4x fa-fw"></i>
+  <span class="sr-only">Loading...</span>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-info" (click)="c()">Ok</button>
+  </div>
+</ng-template>
