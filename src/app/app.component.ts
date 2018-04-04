@@ -1,26 +1,46 @@
 import { Component } from '@angular/core';
-import { LoadingService } from './shared/services/loading.service';
-import { HttpClient } from '@angular/common/http';
+import { LoadingGlobalService } from './loading-global/loading-global.service';
+import { LoadingModalService } from './loading-modal/loading-modal.service';
+import { LoadingInputService } from './loading-input/loading-input.service';
 
 @Component({
-  selector: 'app-root',
+  selector: 'vox-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
-  lero: Object = [{name: 'nothing to see here'}];
 
-  public constructor(private loadingService: LoadingService, private http: HttpClient) {
-    this.loadingService = loadingService;
-    this.http = http;
+  public constructor(
+    private loadingGlobalService: LoadingGlobalService,
+    private loadingModalService: LoadingModalService,
+    private loadingInputService: LoadingInputService
+  ) {}
+
+  public global() {
+    this.loadingGlobalService.show();
+    setTimeout(() => {
+      this.loadingGlobalService.hide();
+    }, 1500);
   }
 
-  click() {
-    this.loadingService.show();
-    this.http.get('https://jsonplaceholder.typicode.com/users', {responseType: 'json'}).subscribe(suc => {
-      this.lero = suc;
-      this.loadingService.hide();
-    });
+  public modal() {
+    this.loadingModalService.show('optional text');
+    setTimeout(() => {
+      this.loadingModalService.hide();
+    }, 1500);
+  }
+
+  public campoSucesso() {
+    this.loadingInputService.show('optional text');
+    setTimeout(() => {
+      this.loadingInputService.hide('success', {success: 'optional success text'});
+    }, 1500);
+  }
+
+  public campoErro() {
+    this.loadingInputService.show();
+    setTimeout(() => {
+      this.loadingInputService.hide('error', {error: 'optional error text'});
+    }, 1500);
   }
 }

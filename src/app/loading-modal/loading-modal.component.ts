@@ -1,42 +1,50 @@
-import { Component, OnInit, Input, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  OnDestroy,
+  ElementRef,
+  ViewChild
+} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { LoadingService } from '../shared/services/loading.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
-@Component({
-    selector: 'app-loading-modal',
-    templateUrl: './loading-modal.component.html',
-    styleUrls: ['./loading-modal.component.css']
-})
+import { LoadingModalService } from './loading-modal.service';
 
+@Component({
+  selector: 'vox-loading-modal',
+  templateUrl: './loading-modal.component.html',
+  styleUrls: ['./loading-modal.component.css']
+})
 export class LoadingModalComponent implements OnInit, OnDestroy {
   @ViewChild('content') private content: ElementRef;
-    public show: boolean;
-    private subscription: Subscription;
-    public modalRef: NgbModalRef;
+  public show: boolean;
+  private subscription: Subscription;
+  public modalRef: NgbModalRef;
+  public textModal: string;
 
-    constructor(
-      private loadingService: LoadingService,
-      private modalService: NgbModal,
-      ) {
-        this.show = false;
-        this.loadingService = loadingService;
-        this.modalService = modalService;
-    }
+  constructor(
+    private loadingModalService: LoadingModalService,
+    private modalService: NgbModal
+  ) {
+    this.show = false;
+  }
 
-    ngOnInit(): void {
-        this.subscription = this.loadingService.loaderModalState
-            .subscribe(state => {
-              if (state.show) {
-                this.modalRef = this.modalService.open(this.content);
-                return;
-              }
-              this.modalRef.close();
-            });
-    }
+  ngOnInit(): void {
+    this.subscription = this.loadingModalService.loaderState.subscribe(
+      state => {
+        if (state.show) {
+          this.textModal = state.text;
+          this.modalRef = this.modalService.open(this.content);
+          return;
+        }
+        this.modalRef.close();
+      }
+    );
+  }
 
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

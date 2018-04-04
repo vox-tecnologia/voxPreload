@@ -4,26 +4,22 @@ import { NgModule } from '@angular/core';
 import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { LoadingGlobalComponent } from './loading-global/loading-global.component';
-import { LoadingModalComponent } from './loading-modal/loading-modal.component';
-import { LoadingCampoComponent } from './loading-campo/loading-campo.component';
+import { LoadingGlobalModule } from './loading-global/loading-global.module';
+import { LoadingModalModule } from './loading-modal/loading-modal.module';
+import { LoadingInputModule } from './loading-input/loading-input.module';
 import { LoadingService } from './shared/services/loading.service';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoadingGlobalComponent,
-    LoadingModalComponent,
-    LoadingCampoComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    NgbModule,
-    NgbModalModule.forRoot()
+    LoadingGlobalModule,
+    LoadingModalModule,
+    LoadingInputModule
   ],
-  providers: [LoadingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

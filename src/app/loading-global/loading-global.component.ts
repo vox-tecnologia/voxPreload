@@ -1,30 +1,28 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { LoadingService } from '../shared/services/loading.service';
+import { LoadingGlobalService } from './loading-global.service';
 
 @Component({
-    selector: 'app-loading-global',
-    templateUrl: './loading-global.component.html',
-    styleUrls: ['./loading-global.component.css']
+  selector: 'vox-loading-global',
+  templateUrl: './loading-global.component.html',
+  styleUrls: ['./loading-global.component.css']
 })
-
 export class LoadingGlobalComponent implements OnInit, OnDestroy {
-    public show: boolean;
-    private subscription: Subscription;
-    private loadingService: LoadingService;
+  public show: boolean;
+  private subscription: Subscription;
 
-    constructor(loadingService: LoadingService) {
-        this.show = false;
-        this.loadingService = loadingService;
-    }
+  constructor(private loadingGlobalService: LoadingGlobalService) {
+    this.show = false;
+  }
 
-    ngOnInit(): void {
-        this.subscription = this.loadingService.loaderGlobalState
-            .subscribe(state => this.show = state.show);
-    }
+  ngOnInit(): void {
+    this.subscription = this.loadingGlobalService.loaderState.subscribe(
+      state => (this.show = state.show)
+    );
+  }
 
-    ngOnDestroy(): void {
-        this.subscription.unsubscribe();
-    }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }
