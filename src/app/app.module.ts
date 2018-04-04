@@ -4,15 +4,15 @@ import { NgModule } from '@angular/core';
 import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { LoadingGlobalModule } from './loading-global/loading-global.module';
-import { LoadingModalModule } from './loading-modal/loading-modal.module';
-import { LoadingInputModule } from './loading-input/loading-input.module';
-import { HttpClientModule } from '@angular/common/http';
+import {
+  LoadingGlobalModule,
+  LoadingInputModule,
+  LoadingModalModule
+} from '@vox-loading/module';
 
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     LoadingGlobalModule,
@@ -21,4 +21,4 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
