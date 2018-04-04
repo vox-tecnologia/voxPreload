@@ -4,11 +4,11 @@ import { NgModule } from '@angular/core';
 import { NgbModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
-import { LoadingGlobalModule } from './loading-global/loading-global.module';
-import { LoadingModalModule } from './loading-modal/loading-modal.module';
-import { LoadingInputModule } from './loading-input/loading-input.module';
-import { LoadingService } from './shared/services/loading.service';
-import { HttpClientModule } from '@angular/common/http';
+
+// call the modules that you need
+import { LoadingGlobalModule } from '../src/app/loading-global/loading-global.module';
+import { LoadingModalModule } from '../src/app/loading-modal/loading-modal.module';
+import { LoadingInputModule } from '../src/app/loading-input/loading-input.module';
 
 @NgModule({
   declarations: [

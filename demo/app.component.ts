@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 // call the services that you need
-import { LoadingGlobalService } from './loading-global/loading-global.service';
-import { LoadingModalService } from './loading-modal/loading-modal.service';
-import { LoadingInputService } from './loading-input/loading-input.service';
+import { LoadingGlobalService } from '../src/app/loading-global/loading-global.service';
+import { LoadingModalService } from '../src/app/loading-modal/loading-modal.service';
+import { LoadingInputService } from '../src/app/loading-input/loading-input.service';
 
 @Component({
   selector: 'vox-root',
