@@ -8,7 +8,7 @@ import {
   LoadingGlobalModule,
   LoadingInputModule,
   LoadingModalModule
-} from '@vox-loading/module';
+} from '@vox-loading';
 
 import { HttpClientModule } from '@angular/common/http';
 @NgModule({
