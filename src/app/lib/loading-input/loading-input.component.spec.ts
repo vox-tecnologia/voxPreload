@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LoadingCampoComponent } from './loading-campo.component';
+import { LoadingInputComponent } from './loading-input.component';
 
-describe('LoadingCampoComponent', () => {
-  let component: LoadingCampoComponent;
-  let fixture: ComponentFixture<LoadingCampoComponent>;
+describe('LoadingInputComponent', () => {
+  let component: LoadingInputComponent;
+  let fixture: ComponentFixture<LoadingInputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoadingCampoComponent ]
+      declarations: [ LoadingInputComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LoadingCampoComponent);
+    fixture = TestBed.createComponent(LoadingInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

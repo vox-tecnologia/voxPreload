@@ -1,19 +1,40 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<app-loading-global></app-loading-global>
-<app-loading-modal></app-loading-modal>
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
+<vox-loading-global></vox-loading-global>
+<vox-loading-modal></vox-loading-modal>
+<div class="container text-center">
+
+  <div class="row">
+    <h1 class="col-12">
+      <img width="150" alt="vox Logo" src="../assets/logo-vox.png">
+    </h1>
+  </div>
+  <div class="row">
+    <h2 class="col-12"> Vox Loading </h2>
+
+    <div class="col-12">
+      <button (click)="global()" class="btn btn-warning">
+        loading global
+      </button>
+      <button (click)="modal()" class="btn btn-primary">
+        loading modal
+      </button>
+      <button (click)="campoSucesso()" class="btn btn-success">
+        loading input success
+      </button>
+      <button (click)="campoErro()" class="btn btn-danger">
+          loading input error
+      </button>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-3 offset-6">
+      <div class="input-group ml-1 mt-4 ">
+        <div class="input-group-addon">input</div>
+        <input type="text" class="form-control">
+      </div>
+      <vox-loading-input></vox-loading-input>
+    </div>
+  </div>
 </div>
-<h2>Here are some links to help you start: </h2>
-<button (click)="click()">
-  clique aqui
-</button>
-<ul *ngFor="let lerolero of lero">
-  <li>
-    <h2>{{ lerolero['name'] }}</h2>
-  </li>
-</ul>
 

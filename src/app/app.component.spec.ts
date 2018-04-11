@@ -1,10 +1,18 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { LoadingGlobalModule } from './loading-global/loading-global.module';
+import { LoadingModalModule } from './loading-modal/loading-modal.module';
+import { LoadingInputModule } from './loading-input/loading-input.module';
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
+      ],
+      imports: [
+        LoadingGlobalModule,
+        LoadingModalModule,
+        LoadingInputModule
       ],
     }).compileComponents();
   }));

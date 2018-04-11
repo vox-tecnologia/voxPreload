@@ -8,6 +8,10 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
+    "baseUrl": "./",
+    "paths": {
+      "@vox-loading":["src/app/lib"]
+    },
     "typeRoots": [
       "node_modules/@types"
     ],

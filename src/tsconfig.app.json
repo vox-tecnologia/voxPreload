@@ -3,6 +3,9 @@
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
+    "paths": {
+      "@vox-loading":["app/lib/index"]
+    },
     "module": "es2015",
     "types": []
   },
