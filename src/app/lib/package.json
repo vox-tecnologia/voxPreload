@@ -1,7 +1,7 @@
 {
   "$schema": "../../../node_modules/ng-packagr/package.schema.json",
-  "name": "vox-preload",
-  "version": "2.0.0",
+  "name": "@voxtecnologia/vox-preload",
+  "version": "1.0.2",
   "description": "component containing many loading styles",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
