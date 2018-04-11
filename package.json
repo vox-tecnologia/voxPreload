@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "copy": "cp README.md dist-lib/",
+    "copy": "cp README.md dist-lib/vox-preloader",
     "clear": "rm -rf dist-lib/",
     "build:npm": "npm run build:lib && npm run copy",
     "build": "ng build --prod",
