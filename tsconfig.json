@@ -10,8 +10,7 @@
     "target": "es5",
     "baseUrl": "./",
     "paths": {
-      "@vox-loading/module":["src/app/index/module"],
-      "@vox-loading/service":["src/app/index/service"]
+      "@vox-loading":["src/app/lib"]
     },
     "typeRoots": [
       "node_modules/@types"

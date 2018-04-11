@@ -4,8 +4,7 @@
     "outDir": "../out-tsc/app",
     "baseUrl": "./",
     "paths": {
-      "@vox-loading/module":["app/index/module"],
-      "@vox-loading/service":["app/index/Service"]
+      "@vox-loading":["app/lib/index"]
     },
     "module": "es2015",
     "types": []
