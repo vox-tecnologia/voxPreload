@@ -1,6 +1,8 @@
 # Vox Preload
 ## Loading component for angular 5+ project
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/511ee0e3b4434d02b6d7ec14e194022f)](https://www.codacy.com/app/neliofrazao/voxPreload?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vox-tecnologia/voxPreload&amp;utm_campaign=Badge_Grade)
+
 *test a live exemple here: https://vox-tecnologia.github.io/voxPreload/*
 >### installing:
 ```
