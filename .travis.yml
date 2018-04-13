@@ -9,5 +9,6 @@ branches:
   only:
     - master
 
+script: "npm test"
 
 after_script: "codecov"
