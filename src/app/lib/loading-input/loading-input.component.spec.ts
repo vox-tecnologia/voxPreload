@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadingInputComponent } from './loading-input.component';
+import { LoadingInputService } from './loading-input.service';
 
 describe('LoadingInputComponent', () => {
   let component: LoadingInputComponent;
@@ -8,7 +9,8 @@ describe('LoadingInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoadingInputComponent ]
+      declarations: [ LoadingInputComponent ],
+      providers: [LoadingInputService]
     })
     .compileComponents();
   }));
