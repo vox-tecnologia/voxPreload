@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadingGlobalComponent } from './loading-global.component';
+import { LoadingGlobalService } from './loading-global.service';
 
 describe('LoadingGlobalComponent', () => {
   let component: LoadingGlobalComponent;
@@ -8,7 +9,8 @@ describe('LoadingGlobalComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoadingGlobalComponent ]
+      declarations: [ LoadingGlobalComponent ],
+      providers: [LoadingGlobalService]
     })
     .compileComponents();
   }));
