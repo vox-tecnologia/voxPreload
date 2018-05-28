@@ -2,7 +2,8 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { LoadingInputService } from './loading-input.service';
-import { InputPropertiesInterface } from './input-properties-interface';
+import { InputProperties } from './input-properties';
+import { StatusEnum } from './status-enum';
 
 @Component({
   selector: 'vox-loading-input',
@@ -11,29 +12,32 @@ import { InputPropertiesInterface } from './input-properties-interface';
 })
 export class LoadingInputComponent implements OnInit, OnDestroy {
   private _subscription: Subscription;
-  private _properties: InputPropertiesInterface;
+  private _properties: InputProperties;
 
   @Input() public name: string;
   public show: boolean;
 
   constructor(private loadingInputService: LoadingInputService) {
     this.show = false;
+    this._properties = new InputProperties();
   }
 
   ngOnInit(): void {
     this._subscription = this.loadingInputService.loaderState.subscribe(
       (state) => {
+        console.log(this._properties, state, this.name);
         this.show = this.checaNome(state) ? state.show : this.show;
-        this.properties.textLoading = state.textMessage;
+        this._properties.textLoading = state.textMessage;
+
         if (!this.show && this.checaNome(state)) {
-          this.properties.status = state.status;
-          this.properties.textSuccess = state.text.success;
-          this.properties.textError = state.text.error;
-          this.properties.resultError = this.properties.status === 'error' ? true : false;
-          this.properties.resultSuccess = this.properties.status === 'success' ? true : false;
+          this._properties.textSuccess = state.text.success;
+          this._properties.textError = state.text.error;
+          this._properties.resultError = state.status === StatusEnum.ERROR ? true : false;
+          this._properties.resultSuccess = state.status === StatusEnum.SUCCESS ? true : false;
+
           setTimeout(() => {
-            this.properties.resultError = false;
-            this.properties.resultSuccess = false;
+            this._properties.resultError = false;
+            this._properties.resultSuccess = false;
           }, 3000);
         }
       }
@@ -44,7 +48,7 @@ export class LoadingInputComponent implements OnInit, OnDestroy {
     this._subscription.unsubscribe();
   }
 
-  public get properties(): InputPropertiesInterface {
+  public get properties(): InputProperties {
     return this._properties;
   }
 

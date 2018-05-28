@@ -10,7 +10,7 @@ describe('LoadingInputComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ LoadingInputComponent ],
-      providers: [LoadingInputService]
+      providers: [ LoadingInputService ]
     })
     .compileComponents();
   }));

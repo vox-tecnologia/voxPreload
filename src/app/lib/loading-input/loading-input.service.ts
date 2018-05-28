@@ -12,7 +12,7 @@ export class LoadingInputService {
   }
 
   public show(element: string, textMessage?: string) {
-    this._loaderSubject.next({ show: true, name: element, text: textMessage });
+    this._loaderSubject.next({ show: true, name: element, textMessage: textMessage });
   }
 
   public hide(

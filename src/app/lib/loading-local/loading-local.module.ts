@@ -8,14 +8,8 @@ import { LoadingLocalComponent } from './loading-local.component';
   imports: [
     CommonModule
   ],
-  declarations: [
-    LoadingLocalComponent
-  ],
-  providers: [
-    LoadingLocalService
-  ],
-  exports: [
-    LoadingLocalComponent
-  ]
+  declarations: [ LoadingLocalComponent ],
+  providers: [ LoadingLocalService ],
+  exports: [ LoadingLocalComponent ]
 })
 export class LoadingLocalModule { }
