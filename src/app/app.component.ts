@@ -12,12 +12,16 @@ import {
 })
 export class AppComponent {
 
+  public exempleC: string;
+
   public constructor(
     private loadingGlobalService: LoadingGlobalService,
     private loadingModalService: LoadingModalService,
     private loadingInputService: LoadingInputService,
     private loadingLocalService: LoadingLocalService
-  ) {}
+  ) {
+    this.exempleC = 'exemplo-c';
+  }
 
   public global() {
     this.loadingGlobalService.show();
@@ -33,17 +37,24 @@ export class AppComponent {
     }, 1500);
   }
 
-  public campoSucesso() {
-    this.loadingInputService.show('exemple-a', 'optional text');
+  public local() {
+    this.loadingLocalService.show('exemple-a');
     setTimeout(() => {
-      this.loadingInputService.hide('exemple-a', 'success', {success: 'optional success text'});
+      this.loadingLocalService.hide('exemple-a');
+    }, 1500);
+  }
+
+  public campoSucesso() {
+    this.loadingInputService.show('exemple-b', 'optional text');
+    setTimeout(() => {
+      this.loadingInputService.hide('exemple-b', 'success', {success: 'optional success text'});
     }, 1500);
   }
 
   public campoErro() {
-    this.loadingInputService.show('exemple-b');
+    this.loadingInputService.show(this.exempleC);
     setTimeout(() => {
-      this.loadingInputService.hide('exemple-b', 'error', {error: 'optional error text'});
+      this.loadingInputService.hide(this.exempleC, 'error', {error: 'optional error text'});
     }, 1500);
   }
 }
