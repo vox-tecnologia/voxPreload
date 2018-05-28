@@ -18,7 +18,7 @@ export class LoadingGlobalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscription = this.loadingGlobalService.loaderState.subscribe(
-      state => (this.show = state.show)
+      (state) => this.show = state.show
     );
   }
 

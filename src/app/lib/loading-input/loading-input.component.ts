@@ -2,6 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { LoadingInputService } from './loading-input.service';
+import { InputPropertiesInterface } from './input-properties-interface';
 
 @Component({
   selector: 'vox-loading-input',
@@ -9,35 +10,30 @@ import { LoadingInputService } from './loading-input.service';
   styleUrls: ['./loading-input.component.css']
 })
 export class LoadingInputComponent implements OnInit, OnDestroy {
-  private subscription: Subscription;
-  private status: string;
+  private _subscription: Subscription;
+  private _properties: InputPropertiesInterface;
 
   @Input() public name: string;
   public show: boolean;
-  public textLoading: string;
-  public textSuccess: string;
-  public textError: string;
-  public resultError: boolean;
-  public resultSuccess: boolean;
 
   constructor(private loadingInputService: LoadingInputService) {
     this.show = false;
   }
 
   ngOnInit(): void {
-    this.subscription = this.loadingInputService.loaderState.subscribe(
-      state => {
+    this._subscription = this.loadingInputService.loaderState.subscribe(
+      (state) => {
         this.show = this.checaNome(state) ? state.show : this.show;
-        this.textLoading = state.textMessage;
+        this.properties.textLoading = state.textMessage;
         if (!this.show && this.checaNome(state)) {
-          this.status = state.status;
-          this.textSuccess = state.text.success;
-          this.textError = state.text.error;
-          this.resultError = this.status === 'error' ? true : false;
-          this.resultSuccess = this.status === 'success' ? true : false;
+          this.properties.status = state.status;
+          this.properties.textSuccess = state.text.success;
+          this.properties.textError = state.text.error;
+          this.properties.resultError = this.properties.status === 'error' ? true : false;
+          this.properties.resultSuccess = this.properties.status === 'success' ? true : false;
           setTimeout(() => {
-            this.resultError = false;
-            this.resultSuccess = false;
+            this.properties.resultError = false;
+            this.properties.resultSuccess = false;
           }, 3000);
         }
       }
@@ -45,7 +41,11 @@ export class LoadingInputComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this._subscription.unsubscribe();
+  }
+
+  public get properties(): InputPropertiesInterface {
+    return this._properties;
   }
 
   private checaNome(state) {
