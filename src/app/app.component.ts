@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import {
   LoadingModalService,
   LoadingGlobalService,
-  LoadingInputService
+  LoadingInputService,
+  LoadingLocalService
 } from '@vox-loading';
 @Component({
   selector: 'vox-root',
@@ -11,11 +12,16 @@ import {
 })
 export class AppComponent {
 
+  public exempleC: string;
+
   public constructor(
     private loadingGlobalService: LoadingGlobalService,
     private loadingModalService: LoadingModalService,
-    private loadingInputService: LoadingInputService
-  ) {}
+    private loadingInputService: LoadingInputService,
+    private loadingLocalService: LoadingLocalService
+  ) {
+    this.exempleC = 'exemplo-c';
+  }
 
   public global() {
     this.loadingGlobalService.show();
@@ -25,23 +31,30 @@ export class AppComponent {
   }
 
   public modal() {
-    this.loadingModalService.show('optional text');
+    this.loadingModalService.show({title: 'optional title', message: 'optional message'});
     setTimeout(() => {
       this.loadingModalService.hide();
     }, 1500);
   }
 
-  public campoSucesso() {
-    this.loadingInputService.show('optional text');
+  public local() {
+    this.loadingLocalService.show('exemple-a');
     setTimeout(() => {
-      this.loadingInputService.hide('success', {success: 'optional success text'});
+      this.loadingLocalService.hide('exemple-a');
+    }, 1500);
+  }
+
+  public campoSucesso() {
+    this.loadingInputService.show('exemple-b', 'optional text');
+    setTimeout(() => {
+      this.loadingInputService.hide('exemple-b', 'success', {success: 'optional success text'});
     }, 1500);
   }
 
   public campoErro() {
-    this.loadingInputService.show();
+    this.loadingInputService.show(this.exempleC);
     setTimeout(() => {
-      this.loadingInputService.hide('error', {error: 'optional error text'});
+      this.loadingInputService.hide(this.exempleC, 'error', {error: 'optional error text'});
     }, 1500);
   }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { LoadingInputService } from './loading-input.service';
+import { InputProperties } from './input-properties';
+import { StatusEnum } from './status-enum';
 
 @Component({
   selector: 'vox-loading-input',
@@ -9,33 +11,33 @@ import { LoadingInputService } from './loading-input.service';
   styleUrls: ['./loading-input.component.css']
 })
 export class LoadingInputComponent implements OnInit, OnDestroy {
+  private _subscription: Subscription;
+  private _properties: InputProperties;
+
+  @Input() public name: string;
   public show: boolean;
-  private subscription: Subscription;
-  public textLoading: string;
-  public textSuccess: string;
-  public textError: string;
-  public resultError: boolean;
-  public resultSuccess: boolean;
-  private status: string;
 
   constructor(private loadingInputService: LoadingInputService) {
     this.show = false;
+    this._properties = new InputProperties();
   }
 
   ngOnInit(): void {
-    this.subscription = this.loadingInputService.loaderState.subscribe(
-      state => {
-        this.show = state.show;
-        this.textLoading = state.textMessage;
-        if (!this.show) {
-          this.status = state.status;
-          this.textSuccess = state.text.success;
-          this.textError = state.text.error;
-          this.resultError = this.status === 'error' ? true : false;
-          this.resultSuccess = this.status === 'success' ? true : false;
+    this._subscription = this.loadingInputService.loaderState.subscribe(
+      (state) => {
+        console.log(this._properties, state, this.name);
+        this.show = this.checaNome(state) ? state.show : this.show;
+        this._properties.textLoading = state.textMessage;
+
+        if (!this.show && this.checaNome(state)) {
+          this._properties.textSuccess = state.text.success;
+          this._properties.textError = state.text.error;
+          this._properties.resultError = state.status === StatusEnum.ERROR ? true : false;
+          this._properties.resultSuccess = state.status === StatusEnum.SUCCESS ? true : false;
+
           setTimeout(() => {
-            this.resultError = false;
-            this.resultSuccess = false;
+            this._properties.resultError = false;
+            this._properties.resultSuccess = false;
           }, 3000);
         }
       }
@@ -43,6 +45,14 @@ export class LoadingInputComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this._subscription.unsubscribe();
+  }
+
+  public get properties(): InputProperties {
+    return this._properties;
+  }
+
+  private checaNome(state) {
+    return this.name === state.name;
   }
 }

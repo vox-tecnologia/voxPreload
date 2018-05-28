@@ -10,19 +10,19 @@ import { LoadingGlobalService } from './loading-global.service';
 })
 export class LoadingGlobalComponent implements OnInit, OnDestroy {
   public show: boolean;
-  private subscription: Subscription;
+  private _subscription: Subscription;
 
   constructor(private loadingGlobalService: LoadingGlobalService) {
     this.show = false;
   }
 
   ngOnInit(): void {
-    this.subscription = this.loadingGlobalService.loaderState.subscribe(
-      state => (this.show = state.show)
+    this._subscription = this.loadingGlobalService.loaderState.subscribe(
+      (state) => this.show = state.show
     );
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this._subscription.unsubscribe();
   }
 }

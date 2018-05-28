@@ -2,14 +2,14 @@
   <p [hidden]="!show">
     <i class="text-info fa fa-circle-o-notch fa-spin fa-fw fa-lg"></i>
     <span class="sr-only">Loading...</span>
-    {{ textLoading || 'Carregando'}}
+    {{ properties.textLoading }}
   </p>
-  <p [hidden]="show || !resultSuccess || resultError">
+  <p [hidden]="show || !properties.resultSuccess || properties.resultError">
     <i class="text-success fa fa-check-circle" aria-hidden="true"></i>
-    {{ textSuccess || 'Concluído' }}
+    {{ properties.textSuccess }}
   </p>
-  <p [hidden]="show || resultSuccess || !resultError">
+  <p [hidden]="show || properties.resultSuccess || !properties.resultError">
     <i class="text-danger fa fa-times-circle" aria-hidden="true"></i>
-    {{ textError || 'Não encontrado' }}
+    {{ properties.textError }}
   </p>
 </div>

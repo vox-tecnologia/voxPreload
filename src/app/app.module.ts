@@ -7,7 +7,8 @@ import { AppComponent } from './app.component';
 import {
   LoadingGlobalModule,
   LoadingInputModule,
-  LoadingModalModule
+  LoadingModalModule,
+  LoadingLocalModule
 } from '@vox-loading';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     LoadingGlobalModule,
     LoadingModalModule,
-    LoadingInputModule
+    LoadingInputModule,
+    LoadingLocalModule,
   ],
   bootstrap: [AppComponent]
 })

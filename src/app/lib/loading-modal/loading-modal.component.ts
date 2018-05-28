@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoadingModalService } from './loading-modal.service';
 
@@ -18,33 +18,40 @@ import { LoadingModalService } from './loading-modal.service';
   styleUrls: ['./loading-modal.component.css']
 })
 export class LoadingModalComponent implements OnInit, OnDestroy {
-  @ViewChild('content') private content: ElementRef;
+  @ViewChild('content') private _content: ElementRef;
+  private _subscription: Subscription;
+  private _modalOptions: NgbModalOptions;
+  private _modalRef: NgbModalRef;
+
   public show: boolean;
-  private subscription: Subscription;
-  public modalRef: NgbModalRef;
   public textModal: string;
+  public title: string;
 
   constructor(
     private loadingModalService: LoadingModalService,
     private modalService: NgbModal
   ) {
     this.show = false;
+    this._modalOptions = {};
   }
 
   ngOnInit(): void {
-    this.subscription = this.loadingModalService.loaderState.subscribe(
+    this._subscription = this.loadingModalService.loaderState.subscribe(
       state => {
         if (state.show) {
-          this.textModal = state.text;
-          this.modalRef = this.modalService.open(this.content);
+          this.textModal = state.content.message;
+          this.title = state.content.title;
+          this._modalOptions.backdrop = 'static';
+          this._modalOptions.keyboard = false;
+          this._modalRef = this.modalService.open(this._content, this._modalOptions);
           return;
         }
-        this.modalRef.close();
+        this._modalRef.close();
       }
     );
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this._subscription.unsubscribe();
   }
 }

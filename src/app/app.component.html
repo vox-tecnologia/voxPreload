@@ -18,6 +18,9 @@
       <button (click)="modal()" class="btn btn-primary">
         loading modal
       </button>
+      <button (click)="local()" class="btn btn-info">
+        loading local
+      </button>
       <button (click)="campoSucesso()" class="btn btn-success">
         loading input success
       </button>
@@ -27,14 +30,25 @@
     </div>
   </div>
 
-  <div class="row">
-    <div class="col-3 offset-6">
-      <div class="input-group ml-1 mt-4 ">
+  <vox-loading-local name="exemple-a"></vox-loading-local>
+
+  <div class="row mt-3">
+    <div class="col-3 offset-3">
+      <div class="input-group ml-1">
         <div class="input-group-addon">input</div>
         <input type="text" class="form-control">
       </div>
-      <vox-loading-input></vox-loading-input>
+      <vox-loading-input name="exemple-b"></vox-loading-input>
+    </div>
+
+    <div class="col-3">
+      <div class="input-group ml-1">
+        <div class="input-group-addon">input</div>
+        <input type="text" class="form-control">
+      </div>
+      <vox-loading-input [name]="exempleC"></vox-loading-input>
     </div>
   </div>
+
 </div>
 
