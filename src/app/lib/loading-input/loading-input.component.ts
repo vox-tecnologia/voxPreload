@@ -9,14 +9,16 @@ import { LoadingInputService } from './loading-input.service';
   styleUrls: ['./loading-input.component.css']
 })
 export class LoadingInputComponent implements OnInit, OnDestroy {
-  public show: boolean;
   private subscription: Subscription;
+  private status: string;
+
+  @Input() public name: string;
+  public show: boolean;
   public textLoading: string;
   public textSuccess: string;
   public textError: string;
   public resultError: boolean;
   public resultSuccess: boolean;
-  private status: string;
 
   constructor(private loadingInputService: LoadingInputService) {
     this.show = false;
@@ -25,9 +27,9 @@ export class LoadingInputComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.loadingInputService.loaderState.subscribe(
       state => {
-        this.show = state.show;
+        this.show = this.checaNome(state) ? state.show : this.show;
         this.textLoading = state.textMessage;
-        if (!this.show) {
+        if (!this.show && this.checaNome(state)) {
           this.status = state.status;
           this.textSuccess = state.text.success;
           this.textError = state.text.error;
@@ -44,5 +46,9 @@ export class LoadingInputComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+  }
+
+  private checaNome(state) {
+    return this.name === state.name;
   }
 }

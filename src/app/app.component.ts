@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import {
   LoadingModalService,
   LoadingGlobalService,
-  LoadingInputService
+  LoadingInputService,
+  LoadingLocalService
 } from '@vox-loading';
 @Component({
   selector: 'vox-root',
@@ -14,7 +15,8 @@ export class AppComponent {
   public constructor(
     private loadingGlobalService: LoadingGlobalService,
     private loadingModalService: LoadingModalService,
-    private loadingInputService: LoadingInputService
+    private loadingInputService: LoadingInputService,
+    private loadingLocalService: LoadingLocalService
   ) {}
 
   public global() {
@@ -32,16 +34,16 @@ export class AppComponent {
   }
 
   public campoSucesso() {
-    this.loadingInputService.show('optional text');
+    this.loadingInputService.show('exemple-a', 'optional text');
     setTimeout(() => {
-      this.loadingInputService.hide('success', {success: 'optional success text'});
+      this.loadingInputService.hide('exemple-a', 'success', {success: 'optional success text'});
     }, 1500);
   }
 
   public campoErro() {
-    this.loadingInputService.show();
+    this.loadingInputService.show('exemple-b');
     setTimeout(() => {
-      this.loadingInputService.hide('error', {error: 'optional error text'});
+      this.loadingInputService.hide('exemple-b', 'error', {error: 'optional error text'});
     }, 1500);
   }
 }

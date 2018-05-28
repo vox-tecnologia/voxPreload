@@ -7,18 +7,19 @@ import { AppComponent } from './app.component';
 import {
   LoadingGlobalModule,
   LoadingInputModule,
-  LoadingModalModule
+  LoadingModalModule,
+  LoadingLocalModule
 } from '@vox-loading';
 
 import { HttpClientModule } from '@angular/common/http';
-import { LoadingLocalComponent } from './lib/loading-local/loading-local.component';
 @NgModule({
-  declarations: [AppComponent, LoadingLocalComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     LoadingGlobalModule,
     LoadingModalModule,
-    LoadingInputModule
+    LoadingInputModule,
+    LoadingLocalModule,
   ],
   bootstrap: [AppComponent]
 })

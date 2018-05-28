@@ -11,14 +11,15 @@ export class LoadingInputService {
     this.loaderState = this.loaderSubject.asObservable();
   }
 
-  public show(textMessage?: string) {
-    this.loaderSubject.next({ show: true, text: textMessage });
+  public show(element: string, textMessage?: string) {
+    this.loaderSubject.next({ show: true, name: element, text: textMessage });
   }
 
   public hide(
+    element: string,
     status: 'success' | 'error',
     text?: { success?: string; error?: string }
   ) {
-    this.loaderSubject.next({ show: false, status: status, text: text });
+    this.loaderSubject.next({ show: false, name: element, status: status, text: text });
   }
 }
