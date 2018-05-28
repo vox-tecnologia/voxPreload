@@ -25,6 +25,7 @@ export class LoadingModalComponent implements OnInit, OnDestroy {
 
   public show: boolean;
   public textModal: string;
+  public title: string;
 
   constructor(
     private loadingModalService: LoadingModalService,
@@ -38,7 +39,8 @@ export class LoadingModalComponent implements OnInit, OnDestroy {
     this._subscription = this.loadingModalService.loaderState.subscribe(
       state => {
         if (state.show) {
-          this.textModal = state.text;
+          this.textModal = state.content.message;
+          this.title = state.content.title;
           this._modalOptions.backdrop = 'static';
           this._modalOptions.keyboard = false;
           this._modalRef = this.modalService.open(this._content, this._modalOptions);

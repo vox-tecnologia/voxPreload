@@ -11,8 +11,8 @@ export class LoadingModalService {
     this.loaderState = this._loaderSubject.asObservable();
   }
 
-  public show(textMessage?: string) {
-    this._loaderSubject.next({ show: true, text: textMessage });
+  public show(content?: {title?: string, message?: string}) {
+    this._loaderSubject.next({ show: true, content: content });
   }
 
   public hide() {

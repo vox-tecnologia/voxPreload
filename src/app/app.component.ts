@@ -31,7 +31,7 @@ export class AppComponent {
   }
 
   public modal() {
-    this.loadingModalService.show('optional text');
+    this.loadingModalService.show({title: 'optional title', message: 'optional message'});
     setTimeout(() => {
       this.loadingModalService.hide();
     }, 1500);

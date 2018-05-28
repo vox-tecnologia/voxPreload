@@ -37,21 +37,52 @@ public makeRequest(){
 ```
 ***
 > ### LoadingInputService
-+ receives an optional string as argument on 'show' method, this alter the default loading message.
++ receives a mandatory string argument and also an optional string as argument on 'show' method, this alter the default loading message.
 ```Typescript
-loadingInputService.show('optional string message')
+loadingInputService.show('element-name', 'optional string message')
 ```
-+ also receives two arguments ond the 'hide' method, the first one refers to either the succes or error of the request adn it is required, the second is a optional message object.
++ also receives two arguments on the 'hide' method, the first one refers to either the succes or error of the request adn it is required, the second is a optional message object.
 ```typescript
-loadingInputService.hide('error', {error: 'optional string message')}
-loadingInputService.hide('success', {success: 'optional string message')}
+loadingInputService.hide('element-name', 'error', {error: 'optional string message')}
+loadingInputService.hide('element-name', 'success', {success: 'optional string message')}
 ```
-> ### LoadingModalService
-+ receives an optional string as argument on 'show' method, this alter the default loading message.
+```html
+<!-- this tag should be right under the input element -->
+<vox-loading-input name="element-name"></vox-loading-input>
+```
+> ### LoadingLocalService
++ receives a mandatory string as argument on 'show' method to indicate witch 'loading' you wish to sow, this allows you to put many 'loading' elements on the same html.
 ```Typescript
-loadingModalService.show('optional string message')
+loadingLocalService.show('element name')
+```
++ also receives a 'name' argument on the 'hide' method.
+```typescript
+loadingLocalService.hide('element name')
+```
+```html
+<!-- this tag should be right under the async element  -->
+<vox-loading-local name="element-name"></vox-loading-local>
+```
+
+> ### LoadingModalService
++ receives an optional content object as argument on 'show' method, this alter the default loading message.
+```Typescript
+loadingModalService.show({title: 'optional string title', message: 'optional string message'});
+loadingModalService.hide()
+```
+```html
+<!-- this tag should be in the main htmll of your app (usually app.component.html) -->
+<vox-loading-modal></vox-loading-modal>
 ```
 #### *LoadingGlobalService doesn't receive any argument*
+```Typescript
+loadingModalService.show();
+loadingModalService.hide()
+```
+```html
+<!-- this tag should be in the main html of your app (usually app.component.html) -->
+<vox-loading-global></vox-loading-global>
+```
 
 ![global loading exemple](./src/assets/global_loading.png) Global loading exemple
 
