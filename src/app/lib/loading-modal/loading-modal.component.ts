@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalRef, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 
 import { LoadingModalService } from './loading-modal.service';
 
@@ -19,8 +19,10 @@ import { LoadingModalService } from './loading-modal.service';
 })
 export class LoadingModalComponent implements OnInit, OnDestroy {
   @ViewChild('content') private content: ElementRef;
-  public show: boolean;
   private subscription: Subscription;
+  modalOptions: NgbModalOptions;
+
+  public show: boolean;
   public modalRef: NgbModalRef;
   public textModal: string;
 
@@ -29,6 +31,7 @@ export class LoadingModalComponent implements OnInit, OnDestroy {
     private modalService: NgbModal
   ) {
     this.show = false;
+    this.modalOptions = {};
   }
 
   ngOnInit(): void {
@@ -36,7 +39,9 @@ export class LoadingModalComponent implements OnInit, OnDestroy {
       state => {
         if (state.show) {
           this.textModal = state.text;
-          this.modalRef = this.modalService.open(this.content);
+          this.modalOptions.backdrop = 'static';
+          this.modalOptions.keyboard = false;
+          this.modalRef = this.modalService.open(this.content, this.modalOptions);
           return;
         }
         this.modalRef.close();
