@@ -18,12 +18,12 @@ import { LoadingModalService } from './loading-modal.service';
   styleUrls: ['./loading-modal.component.css']
 })
 export class LoadingModalComponent implements OnInit, OnDestroy {
-  @ViewChild('content') private content: ElementRef;
-  private subscription: Subscription;
-  modalOptions: NgbModalOptions;
+  @ViewChild('content') private _content: ElementRef;
+  private _subscription: Subscription;
+  private _modalOptions: NgbModalOptions;
+  private _modalRef: NgbModalRef;
 
   public show: boolean;
-  public modalRef: NgbModalRef;
   public textModal: string;
 
   constructor(
@@ -31,25 +31,25 @@ export class LoadingModalComponent implements OnInit, OnDestroy {
     private modalService: NgbModal
   ) {
     this.show = false;
-    this.modalOptions = {};
+    this._modalOptions = {};
   }
 
   ngOnInit(): void {
-    this.subscription = this.loadingModalService.loaderState.subscribe(
+    this._subscription = this.loadingModalService.loaderState.subscribe(
       state => {
         if (state.show) {
           this.textModal = state.text;
-          this.modalOptions.backdrop = 'static';
-          this.modalOptions.keyboard = false;
-          this.modalRef = this.modalService.open(this.content, this.modalOptions);
+          this._modalOptions.backdrop = 'static';
+          this._modalOptions.keyboard = false;
+          this._modalRef = this.modalService.open(this._content, this._modalOptions);
           return;
         }
-        this.modalRef.close();
+        this._modalRef.close();
       }
     );
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this._subscription.unsubscribe();
   }
 }

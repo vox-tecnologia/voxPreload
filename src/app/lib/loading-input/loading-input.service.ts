@@ -3,16 +3,16 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class LoadingInputService {
-  private loaderSubject: Subject<any>;
+  private _loaderSubject: Subject<any>;
   public loaderState: any;
 
   constructor() {
-    this.loaderSubject = new Subject();
-    this.loaderState = this.loaderSubject.asObservable();
+    this._loaderSubject = new Subject();
+    this.loaderState = this._loaderSubject.asObservable();
   }
 
   public show(element: string, textMessage?: string) {
-    this.loaderSubject.next({ show: true, name: element, text: textMessage });
+    this._loaderSubject.next({ show: true, name: element, text: textMessage });
   }
 
   public hide(
@@ -20,6 +20,6 @@ export class LoadingInputService {
     status: 'success' | 'error',
     text?: { success?: string; error?: string }
   ) {
-    this.loaderSubject.next({ show: false, name: element, status: status, text: text });
+    this._loaderSubject.next({ show: false, name: element, status: status, text: text });
   }
 }

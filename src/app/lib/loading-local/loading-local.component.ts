@@ -13,20 +13,20 @@ export class LoadingLocalComponent implements OnInit, OnDestroy {
 
   @Input() public name: string;
   public show: boolean;
-  private subscription: Subscription;
+  private _subscription: Subscription;
 
   constructor(private loadingLocalService: LoadingLocalService) {
     this.show = false;
   }
 
   ngOnInit(): void {
-    this.subscription = this.loadingLocalService.loaderState.subscribe(
+    this._subscription = this.loadingLocalService.loaderState.subscribe(
       (state) => this.show = this.checaNome(state) ? state.show : this.show
     );
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this._subscription.unsubscribe();
   }
 
   private checaNome(state) {
