@@ -11,8 +11,9 @@ import {
 } from '@vox-loading';
 
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingLocalComponent } from './lib/loading-local/loading-local.component';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoadingLocalComponent],
   imports: [
     BrowserModule,
     LoadingGlobalModule,
