@@ -39,8 +39,7 @@ export class LoadingModalComponent implements OnInit, OnDestroy {
     this._subscription = this.loadingModalService.loaderState.subscribe(
       state => {
         if (state.show) {
-          this.textModal = state.content.message;
-          this.title = state.content.title;
+          this.setaConteudo(state);
           this._modalOptions.backdrop = 'static';
           this._modalOptions.keyboard = false;
           this._modalRef = this.modalService.open(this._content, this._modalOptions);
@@ -53,5 +52,12 @@ export class LoadingModalComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this._subscription.unsubscribe();
+  }
+
+  private setaConteudo(state) {
+    if (state.content) {
+      this.textModal = state.content.message;
+      this.title = state.content.title;
+    }
   }
 }

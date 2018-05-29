@@ -466,7 +466,6 @@ var LoadingInputComponent = /** @class */ (function () {
     LoadingInputComponent.prototype.ngOnInit = function () {
         var _this = this;
         this._subscription = this.loadingInputService.loaderState.subscribe(function (state) {
-            console.log(_this._properties, state, _this.name);
             _this.show = _this.checaNome(state) ? state.show : _this.show;
             _this._properties.textLoading = state.textMessage;
             if (!_this.show && _this.checaNome(state)) {
@@ -781,7 +780,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/lib/loading-modal/loading-modal.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "<ng-template #content>\n  <div class=\"modal-header title\">\n    <h4 class=\"modal-title\">{{ title || 'Carregando&hellip;' }}</h4>\n  </div>\n  <div class=\"modal-body text-center\">\n    <i class=\"text-info fa fa-circle-o-notch fa-spin fa-4x fa-fw\"></i>\n  <span class=\"sr-only\">Loading...</span>\n  <p class=\"mt-3 mb-0\">{{ textModal || \"Carregando dados, por favor aguarde.\" }}</p>\n  </div>\n  <div class=\"modal-footer\">\n  </div>\n</ng-template>\n"
+module.exports = "<ng-template #content>\n  <div class=\"modal-header title\">\n    <h4 class=\"modal-title\">{{ title || 'Carregando&hellip;' }}</h4>\n  </div>\n  <div class=\"modal-body text-center\">\n    <i class=\"text-info fa fa-circle-o-notch fa-spin fa-4x fa-fw\"></i>\n  <span class=\"sr-only\">Loading...</span>\n  <p class=\"mt-3 mb-0\">{{ textModal || 'Carregando dados, por favor aguarde&hellip;' }}</p>\n  </div>\n  <div class=\"modal-footer\">\n  </div>\n</ng-template>\n"
 
 /***/ }),
 
@@ -816,8 +815,7 @@ var LoadingModalComponent = /** @class */ (function () {
         var _this = this;
         this._subscription = this.loadingModalService.loaderState.subscribe(function (state) {
             if (state.show) {
-                _this.textModal = state.content.message;
-                _this.title = state.content.title;
+                _this.setaConteudo(state);
                 _this._modalOptions.backdrop = 'static';
                 _this._modalOptions.keyboard = false;
                 _this._modalRef = _this.modalService.open(_this._content, _this._modalOptions);
@@ -828,6 +826,12 @@ var LoadingModalComponent = /** @class */ (function () {
     };
     LoadingModalComponent.prototype.ngOnDestroy = function () {
         this._subscription.unsubscribe();
+    };
+    LoadingModalComponent.prototype.setaConteudo = function (state) {
+        if (state.content) {
+            this.textModal = state.content.message;
+            this.title = state.content.title;
+        }
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_6" /* ViewChild */])('content'),

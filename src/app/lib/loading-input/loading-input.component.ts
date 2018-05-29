@@ -25,7 +25,6 @@ export class LoadingInputComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._subscription = this.loadingInputService.loaderState.subscribe(
       (state) => {
-        console.log(this._properties, state, this.name);
         this.show = this.checaNome(state) ? state.show : this.show;
         this._properties.textLoading = state.textMessage;
 
