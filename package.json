@@ -11,6 +11,7 @@
     "build:npm": "npm run build:lib && npm run copy",
     "build": "ng build --prod",
     "build:lib": "ng-packagr -p src/app/lib/package.json",
+    "publish":"ng lint && ng test && npm run build:npm && npm publish dist-lib/vox-preloader",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
