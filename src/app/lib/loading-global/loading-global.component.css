@@ -1,8 +1,8 @@
 .loading-global{
   z-index: 1000;
   position: fixed;
-  top: 50%;
-  right: 50%;
+  top: 35%;
+  right: 45%;
   color: #FFF;
 }
 

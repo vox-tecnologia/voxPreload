@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "ghpages": "ng build --base-href /voxPreload/",
     "copy": "cp README.md dist-lib/vox-preloader",
     "clear": "rm -rf dist-lib/",
     "build:npm": "npm run build:lib && npm run copy",
