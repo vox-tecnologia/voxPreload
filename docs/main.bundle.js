@@ -469,10 +469,7 @@ var LoadingInputComponent = /** @class */ (function () {
             _this.show = _this.checaNome(state) ? state.show : _this.show;
             _this._properties.textLoading = state.textMessage;
             if (!_this.show && _this.checaNome(state)) {
-                _this._properties.textSuccess = state.text.success;
-                _this._properties.textError = state.text.error;
-                _this._properties.resultError = state.status === __WEBPACK_IMPORTED_MODULE_3__status_enum__["a" /* StatusEnum */].ERROR ? true : false;
-                _this._properties.resultSuccess = state.status === __WEBPACK_IMPORTED_MODULE_3__status_enum__["a" /* StatusEnum */].SUCCESS ? true : false;
+                _this.setProperties(state);
                 setTimeout(function () {
                     _this._properties.resultError = false;
                     _this._properties.resultSuccess = false;
@@ -492,6 +489,14 @@ var LoadingInputComponent = /** @class */ (function () {
     });
     LoadingInputComponent.prototype.checaNome = function (state) {
         return this.name === state.name;
+    };
+    LoadingInputComponent.prototype.setProperties = function (state) {
+        if (state.text) {
+            this._properties.textSuccess = state.text.success;
+            this._properties.textError = state.text.error;
+        }
+        this._properties.resultError = state.status === __WEBPACK_IMPORTED_MODULE_3__status_enum__["a" /* StatusEnum */].ERROR ? true : false;
+        this._properties.resultSuccess = state.status === __WEBPACK_IMPORTED_MODULE_3__status_enum__["a" /* StatusEnum */].SUCCESS ? true : false;
     };
     __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Input */])(),
