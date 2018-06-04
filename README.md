@@ -1,4 +1,7 @@
 # Vox Preload
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/89d2db570f0d4f3ca09a5ec0585d6d12)](https://app.codacy.com/app/neliofrazao/voxPreload?utm_source=github.com&utm_medium=referral&utm_content=vox-tecnologia/voxPreload&utm_campaign=badger)
+
 ## Loading component for angular 5+ project
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/511ee0e3b4434d02b6d7ec14e194022f)](https://www.codacy.com/app/neliofrazao/voxPreload?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vox-tecnologia/voxPreload&amp;utm_campaign=Badge_Grade)
