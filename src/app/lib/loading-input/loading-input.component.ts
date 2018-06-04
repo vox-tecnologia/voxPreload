@@ -25,16 +25,11 @@ export class LoadingInputComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this._subscription = this.loadingInputService.loaderState.subscribe(
       (state) => {
-        console.log(this._properties, state, this.name);
         this.show = this.checaNome(state) ? state.show : this.show;
         this._properties.textLoading = state.textMessage;
 
         if (!this.show && this.checaNome(state)) {
-          this._properties.textSuccess = state.text.success;
-          this._properties.textError = state.text.error;
-          this._properties.resultError = state.status === StatusEnum.ERROR ? true : false;
-          this._properties.resultSuccess = state.status === StatusEnum.SUCCESS ? true : false;
-
+          this.setProperties(state);
           setTimeout(() => {
             this._properties.resultError = false;
             this._properties.resultSuccess = false;
@@ -54,5 +49,14 @@ export class LoadingInputComponent implements OnInit, OnDestroy {
 
   private checaNome(state) {
     return this.name === state.name;
+  }
+
+  private setProperties(state) {
+    if (state.text) {
+      this._properties.textSuccess = state.text.success;
+      this._properties.textError = state.text.error;
+    }
+    this._properties.resultError = state.status === StatusEnum.ERROR ? true : false;
+    this._properties.resultSuccess = state.status === StatusEnum.SUCCESS ? true : false;
   }
 }
